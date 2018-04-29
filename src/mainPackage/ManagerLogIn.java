@@ -140,7 +140,7 @@ public class ManagerLogIn extends javax.swing.JFrame {
         String username = jTextField1.getText();
         String password = jPasswordField1.getText();
         
-        if(username.contains("rubel")&& password.contains("admin")){
+        if(username.contains("admin")&& password.contains("admin")){
             JOptionPane.showMessageDialog(this, "Successfully Logged In");
             this.dispose();
             Manager m1 =  new Manager();
