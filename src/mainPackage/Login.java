@@ -45,7 +45,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 153, 0));
-        jLabel2.setText("COUNCELLING");
+        jLabel2.setText("APPLICATION");
 
         jLabel3.setFont(new java.awt.Font("Verdana", 3, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 153, 0));
