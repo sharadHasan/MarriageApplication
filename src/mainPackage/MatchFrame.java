@@ -214,7 +214,16 @@ public class MatchFrame extends javax.swing.JFrame {
         }catch(SQLException ex){
             ex.printStackTrace();
         }
-        matchTable.setModel(DbUtils.resultSetToTableModel(rs));
+        try {
+            if(rs.next()){
+                matchTable.setModel(DbUtils.resultSetToTableModel(rs));
+            }else{
+                JOptionPane.showMessageDialog(this, "Sorry No Match found!");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MatchFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
