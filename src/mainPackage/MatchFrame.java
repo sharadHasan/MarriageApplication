@@ -15,6 +15,7 @@ public class MatchFrame extends javax.swing.JFrame {
     ResultSet rs = null;
     private String gender;
     private String user;
+    private String genderCh;
     public MatchFrame() {
         initComponents();
         this.setVisible(true);
@@ -36,13 +37,11 @@ public class MatchFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         matchTable = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -64,10 +63,7 @@ public class MatchFrame extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Complexion");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Education ");
+        jLabel5.setText("Gender");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Find Match");
@@ -98,9 +94,7 @@ public class MatchFrame extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fair", "Brown", "Black" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "B.Sc.", "B.Com.", "B.A.", "HSC", "SSC", "MBBS" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
         jButton3.setBackground(new java.awt.Color(51, 102, 0));
         jButton3.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
@@ -128,15 +122,10 @@ public class MatchFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(49, 49, 49)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(71, 71, 71)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -173,11 +162,7 @@ public class MatchFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(77, 77, 77)
+                        .addGap(133, 133, 133)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,23 +176,24 @@ public class MatchFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Choice ch = new Choice( Integer.parseInt(jTextField1.getText()),Double.parseDouble(jTextField3.getText()),
-        jComboBox1.getSelectedItem().toString(),jComboBox3.getSelectedItem().toString());
+        jComboBox1.getSelectedItem().toString());
+        this.genderCh = jComboBox1.getSelectedItem().toString();
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/marriage", "root", "");
             PreparedStatement ps;
-            if(this.gender.equals("Male")){
-                ps  = connection.prepareStatement("select name,gender,age,address,height,complexion,education,religion,job,familyMember from profile where age <= ? and height>= ? and complexion = ? and education = ? and gender = 'female'");
+            if(this.genderCh.equals("Female")){
+                ps  = connection.prepareStatement("select name,gender,age,address,height,complexion,education,religion,job,familyMember from profile where age <= ? and height>= ? and gender = 'female'");
                 //ps  = connection.prepareStatement("select name,gender,age,address,height,complexion,education,religion,job,familyMember from profile where gender = 'Female'");
             }else{
-                ps  = connection.prepareStatement("select name,gender,age,address,height,complexion,education,religion,job,familyMember from profile where age <= ? and height>= ? and complexion = ? and education = ? and gender = 'male'");
+                ps  = connection.prepareStatement("select name,gender,age,address,height,complexion,education,religion,job,familyMember from profile where age <= ? and height>= ? and gender = 'male'");
                 //ps  = connection.prepareStatement("select name,gender,age,address,height,complexion,education,religion,job,familyMember from profile where gender = 'Male'");
             }
             
             ps.setString(1, Integer.toString(ch.getAgeCh()));
             //ps.setString(2, ch.getAddress_ch());
             ps.setString(2, Double.toString(ch.getHeightCh()));
-            ps.setString(3, ch.getcomplexionCh());
-            ps.setString(4, ch.getEducationCh());
+            //ps.setString(3, ch.getGenderCh());
+            //ps.setString(4, ch.getEducationCh());
             //ps.setString(6, ch.getJobCh());
             //ps.setString(7, Integer.toString(ch.getFamilyMemberCh()));
             rs = ps.executeQuery();
@@ -277,12 +263,10 @@ public class MatchFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;

@@ -5,7 +5,7 @@ public class Choice {
     private int ageCh;
     private String addressCh;
     private double heightCh;
-    private String complexionCh;
+    private String genderCh;
     private String educationCh;
     private String jobCh;
     private int familyMemberCh;
@@ -13,14 +13,14 @@ public class Choice {
         public Choice(){
             
         }
-        public Choice(int ageCh,double heightCh,String complexionChCh,String educationCh){
+        public Choice(int ageCh,double heightCh,String genderCh){
             this.ageCh = ageCh;
-            this.addressCh = addressCh;
+            //this.addressCh = addressCh;
             this.heightCh = heightCh;
-            this.complexionCh =complexionChCh;
-            this.educationCh = educationCh;
-            this.jobCh = jobCh;
-            this.familyMemberCh = familyMemberCh;
+            this.genderCh =genderCh;
+            //this.educationCh = educationCh;
+            //this.jobCh = jobCh;
+            //this.familyMemberCh = familyMemberCh;
         }
         public int getAgeCh() {
 		return ageCh;
@@ -46,12 +46,20 @@ public class Choice {
 		this.heightCh = height_ch;
 	}
 
-	public String getcomplexionCh() {
-		return complexionCh;
+//	public String getcomplexionCh() {
+//		return complexionCh;
+//	}
+        
+        public String getGenderCh() {
+		return genderCh;
 	}
 
-	public void setComplexionCh(String scrColor_ch) {
-		this.complexionCh = scrColor_ch;
+//	public void setComplexionCh(String scrColor_ch) {
+//		this.complexionCh = scrColor_ch;
+//	}
+        
+        public void setGenderCh(String genderCh) {
+		this.genderCh = genderCh;
 	}
 
 	public String getEducationCh() {
