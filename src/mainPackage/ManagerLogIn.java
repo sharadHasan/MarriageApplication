@@ -52,7 +52,7 @@ public class ManagerLogIn extends javax.swing.JFrame {
 
         jPasswordField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 102));
+        jButton1.setBackground(new java.awt.Color(255, 255, 204));
         jButton1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mainPackage/Image/logIn.png"))); // NOI18N
         jButton1.setText("Log in");
@@ -140,7 +140,7 @@ public class ManagerLogIn extends javax.swing.JFrame {
         String username = jTextField1.getText();
         String password = jPasswordField1.getText();
         
-        if(username.contains("rubel")&& password.contains("admin")){
+        if(username.contains("admin")&& password.contains("admin")){
             JOptionPane.showMessageDialog(this, "Successfully Logged In");
             this.dispose();
             Manager m1 =  new Manager();
